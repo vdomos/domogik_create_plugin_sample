@@ -1,4 +1,4 @@
-## Script to create main folders and files in one shot for Domogik Plugins
+### Script to create main folders and files in one shot for Domogik Plugins
 
 Domogik is an open source home automation solution: http://domogik.org
 
