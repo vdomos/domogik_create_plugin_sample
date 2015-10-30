@@ -22,8 +22,8 @@ touch bin/${PLUGIN_ID}.py
 mkdir lib
 touch lib/__init__.py
 touch lib/${PLUGIN_ID}.py
-mkdir conversions
-touch conversions/__init__.py
+mkdir conversion
+touch conversion/__init__.py
 
 # various
 mkdir data
