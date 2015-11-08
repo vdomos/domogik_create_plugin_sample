@@ -8,12 +8,22 @@
 PLUGIN_ID=$1
 if [ -z "$PLUGIN_ID" ]
 then
-	echo "    Usage: $0 plugin_name"
-        exit 1
+	echo "    Usage: $0 plugin_name copyright"
+	echo "     Example: $0 plugin_name '2015, Name'"
+	exit 1
 fi
 
+COPYRIGHT=$2
+if [ -z "$COPYRIGHT" ]
+then
+	COPYRIGHT='2015, noname'
+fi
 
 # -----------------------------------------------------------------------------
+
+mkdir "plugin_$PLUGIN_ID"
+cd plugin_$PLUGIN_ID
+
 # python part
 touch __init__.py
 mkdir bin
@@ -29,7 +39,7 @@ touch conversion/__init__.py
 mkdir data
 mkdir udev
 mkdir design
-touch design/icon.png
+#touch design/icon.png
 echo "icon PNG format, 96*96 px, Be GPL compliant (don’t use private or non free existing icons)" > design/icon.txt
 
 # tests
@@ -38,13 +48,145 @@ mkdir tests
 
 # docs
 mkdir docs
-touch docs/changelog.txt
-touch docs/conf.py  
 touch docs/dev.txt 
-touch docs/index.txt  
 touch docs/tests.txt
-touch docs/${PLUGIN_ID}.txt 
 
+# -----------------------------------------------------------------------------
+# docs/conf.py 
+cat << EOF >> docs/conf.py
+
+import sys
+import os
+
+extensions = [
+    'sphinx.ext.todo',
+]
+
+source_suffix = '.txt'
+
+master_doc = 'index'
+
+### part to update ###################################
+project = u'domogik-plugin-${PLUGIN_ID}'
+copyright = u'$COPYRIGHT'
+version = '0.1'
+release = version
+######################################################
+
+pygments_style = 'sphinx'
+
+html_theme = 'default'
+html_static_path = ['_static']
+EOF
+
+
+# -----------------------------------------------------------------------------
+# docs/index.txt 
+cat << EOF >> docs/index.txt
+.. _toc:
+
+================
+Table Of Content
+================
+
+.. toctree::
+
+    /script
+    /dev
+    /tests
+    /changelog
+EOF
+
+
+# -----------------------------------------------------------------------------
+# docs/${PLUGIN_ID}.txt 
+cat << EOF >> docs/${PLUGIN_ID}.txt 
+.. _index:
+
+===================
+Plugin ${PLUGIN_ID}
+===================
+
+Purpose
+=======
+
+.. raw:: html
+
+   <br />
+   <hr>
+
+Dependencies
+============
+
+.. raw:: html
+
+   <br />
+   <hr>
+
+Plugin configuration
+====================
+
+.. raw:: html
+
+   <br />
+   <hr>
+
+Create the devices
+==================
+
+Device parameters configuration
+-------------------------------
+
+X parameters are needed for a domogik device creation ...
+
+
+===================== =========================== ======================================================================
+Key                   Type                        Description
+===================== =========================== ======================================================================
+key1                  datatype                    ...
+--------------------- --------------------------- ----------------------------------------------------------------------
+key2                  datatype                    ...
+===================== =========================== ======================================================================
+
+
+.. raw:: html
+
+   <br />
+   <hr>
+
+Start the plugin
+================
+
+You can now start the plugin (start button) and use the created devices.
+
+.. raw:: html
+
+   <br />
+   <hr>
+
+Set up your widgets on the user interface
+=========================================
+
+You can now place the widgets of your devices features on the user interface.
+
+.. raw:: html
+
+   <br />
+EOF
+
+
+# -----------------------------------------------------------------------------
+# docs/changelog.txt
+cat << EOF >> docs/changelog.txt
+=========
+Changelog
+=========
+
+0.1
+===
+
+* Plugin creation
+EOF
 
 
 # -----------------------------------------------------------------------------
@@ -88,6 +230,9 @@ cat << EOF >> .gitignore
 *.pyc
 *.swp
 _build_doc
+*~
+*.20*
+
 EOF
 
 

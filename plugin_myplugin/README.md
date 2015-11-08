@@ -1,4 +1,4 @@
-# Domogik Plugin myPlugin
+# Domogik Plugin myplugin
 
 ## Purpose
 
