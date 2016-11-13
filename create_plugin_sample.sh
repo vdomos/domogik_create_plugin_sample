@@ -91,7 +91,7 @@ Table Of Content
 
 .. toctree::
 
-    /script
+    /$PLUGIN_ID
     /dev
     /tests
     /changelog
@@ -110,26 +110,11 @@ Plugin ${PLUGIN_ID}
 Purpose
 =======
 
-.. raw:: html
-
-   <br />
-   <hr>
-
 Dependencies
 ============
 
-.. raw:: html
-
-   <br />
-   <hr>
-
 Plugin configuration
 ====================
-
-.. raw:: html
-
-   <br />
-   <hr>
 
 Create the devices
 ==================
@@ -149,29 +134,15 @@ key2                  datatype                    ...
 ===================== =========================== ======================================================================
 
 
-.. raw:: html
-
-   <br />
-   <hr>
-
 Start the plugin
 ================
 
 You can now start the plugin (start button) and use the created devices.
 
-.. raw:: html
-
-   <br />
-   <hr>
-
 Set up your widgets on the user interface
 =========================================
 
 You can now place the widgets of your devices features on the user interface.
-
-.. raw:: html
-
-   <br />
 EOF
 
 
@@ -203,7 +174,15 @@ Domogik is an open source home automation solution.
 ## Documentation 
 
 You can find the documentation source in the **docs/** folder. When the package will be installed, the documentation will be available in the **Documentation** menu of the Domogik administration for this package.
-You may also find online documentation for this plugin. You will be able to find the documentation url on http://repo-public.domogik.org/dashboard
+You may also find online documentation for this plugin. 
+You will be able to find the documentation url on 
+
+http://repo-public.domogik.org/dashboard
+
+or
+
+http://domogik-plugin-$PLUGIN_ID.readthedocs.org/en/latest/index.html
+
 
 ## Install the package
 
@@ -232,6 +211,7 @@ cat << EOF >> .gitignore
 _build_doc
 *~
 *.20*
+*.directory
 
 EOF
 
